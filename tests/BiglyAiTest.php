@@ -28,7 +28,7 @@ it('can product email completion', function () {
     ]);
 
     $api = new BiglySalesAi($api_key);
-    //$api->withMockClient($mockClient);
+    $api->withMockClient($mockClient);
 
     /**
      * A pre-prompt is where you can provide information that should be taken into
