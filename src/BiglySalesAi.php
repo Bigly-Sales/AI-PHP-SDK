@@ -8,9 +8,6 @@ use Saloon\Http\Connector;
 
 class BiglySalesAi extends Connector
 {
-    /**
-     * @param string $api_key
-     */
     public function __construct(public readonly string $api_key)
     {
         //
@@ -25,7 +22,7 @@ class BiglySalesAi extends Connector
     {
         return [
             'Accept' => 'application/json',
-            'Content-Type' => 'application/json'
+            'Content-Type' => 'application/json',
         ];
     }
 

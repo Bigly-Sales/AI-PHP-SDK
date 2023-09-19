@@ -12,19 +12,19 @@ it('can product email completion', function () {
 
     $parsed_output = [
         'subject' => 'Test Subject',
-        'body'    => 'Test Body'
+        'body' => 'Test Body',
     ];
 
     $completion = sprintf('Here is the JSON: %s', json_encode($parsed_output));
-    
+
     $mockClient = new MockClient([
         BiglySalesAi::class => MockResponse::make($api_key, 200),
         CreateEmailCompletionRequest::class => MockResponse::make([
             'trace_id' => 'd380611e-c32a-486b-8459-489c02fd2ce6',
             'info' => 'Given that AI can sometimes hallucinate we have provided you the full completion in addition to a parsed',
             'completion' => $completion,
-            'parsed_output' => $parsed_output
-        ], 200)
+            'parsed_output' => $parsed_output,
+        ], 200),
     ]);
 
     $api = new BiglySalesAi($api_key);
@@ -35,7 +35,7 @@ it('can product email completion', function () {
      * account when generating the email completion. Information placed here
      * should be about the sender, not the recipient.
      */
-    $pre_prompt = <<<EOT
+    $pre_prompt = <<<'EOT'
     Here is information about our company:
     - Company Name: John Doe Payment Services, LLC.
     - Services: High Risk Payment Processing
@@ -47,7 +47,7 @@ it('can product email completion', function () {
      * Rules are extra instructions you can give to fine-tune
      * how the AI generates the email completion.
      */
-    $rules = <<<EOT
+    $rules = <<<'EOT'
     - Place recipients name at the beginning of the subject.
     - Ask they're availability for a call on Friday.
     - Address recipient by first name only.
@@ -62,7 +62,7 @@ it('can product email completion', function () {
         'email' => 'jane@janesmith.com',
         'title' => 'Founder',
         'company' => "Jane's Resume Services",
-        'description' => 'Resume writing service.'
+        'description' => 'Resume writing service.',
     ];
 
     $response = $api->emailCompletions()->create($pre_prompt, $rules, $payload);
@@ -72,8 +72,6 @@ it('can product email completion', function () {
     expect($response->json('completion'))->toBeString();
     expect($response->json('parsed_output'))->toBeArray();
 });
-
-
 
 it('can product sms completion', function () {
 
@@ -91,8 +89,8 @@ it('can product sms completion', function () {
             'trace_id' => 'd380611e-c32a-486b-8459-489c02fd2ce6',
             'info' => 'Given that AI can sometimes hallucinate we have provided you the full completion in addition to a parsed',
             'completion' => $completion,
-            'parsed_output' => $parsed_output
-        ], 200)
+            'parsed_output' => $parsed_output,
+        ], 200),
     ]);
 
     $api = new BiglySalesAi($api_key);
@@ -103,7 +101,7 @@ it('can product sms completion', function () {
      * account when generating the sms completion. Information placed here
      * should be about the sender, not the recipient.
      */
-    $pre_prompt = <<<EOT
+    $pre_prompt = <<<'EOT'
     Here is information about our company:
     - Company Name: John Doe Payment Services, LLC.
     - Services: High Risk Payment Processing
@@ -115,7 +113,7 @@ it('can product sms completion', function () {
      * Rules are extra instructions you can give to fine-tune
      * how the AI generates the sms completion.
      */
-    $rules = <<<EOT
+    $rules = <<<'EOT'
     - Should be no more than 100 characters long.
     EOT;
 
@@ -127,7 +125,7 @@ it('can product sms completion', function () {
         'email' => 'jane@janesmith.com',
         'title' => 'Founder',
         'company' => "Jane's Resume Services",
-        'description' => 'Resume writing service.'
+        'description' => 'Resume writing service.',
     ];
 
     $response = $api->smsCompletions()->create($pre_prompt, $rules, $payload);

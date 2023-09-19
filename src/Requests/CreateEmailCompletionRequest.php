@@ -14,16 +14,16 @@ class CreateEmailCompletionRequest extends Request implements HasBody
     protected Method $method = Method::POST;
 
     /**
-     * @param string $pre_prompt
+     * @param  string  $pre_prompt
      *  A pre-prompt is where you can provide information that should be taken into
      *  account when generating the email completion. Information placed here
      *  should be about the sender, not the recipient.
-     * @param string $rules
+     * @param  string  $rules
      *  Rules are extra instructions you can give to fine-tune
      *  how the AI generates the email completion.
-     * @param array $payload
+     * @param  array  $payload
      *  The payload is the information about the recipient.
-     * @param string $api_key
+     * @param  string  $api_key
      *  Your BiglySales AI API Key
      */
     public function __construct(
@@ -31,7 +31,7 @@ class CreateEmailCompletionRequest extends Request implements HasBody
         public readonly string $rules,
         public readonly array $payload,
         public readonly string $api_key
-    ){
+    ) {
         //
     }
 
@@ -44,9 +44,9 @@ class CreateEmailCompletionRequest extends Request implements HasBody
     {
         return [
             'pre_prompt' => $this->pre_prompt,
-            'rules'  => $this->rules,
+            'rules' => $this->rules,
             'payload' => $this->payload,
-            'api_key' => $this->api_key
+            'api_key' => $this->api_key,
         ];
     }
 }
