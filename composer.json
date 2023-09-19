@@ -1,0 +1,50 @@
+{
+    "name": "bigly-sales/ai-php-sdk",
+    "description": "This is my package ai-php-sdk",
+    "keywords": [
+        "bigly-sales",
+        "ai-php-sdk"
+    ],
+    "homepage": "https://github.com/bigly-sales/ai-php-sdk",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jordan Dalton",
+            "email": "jordan@biglysales.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "saloonphp/saloon": "^2.0"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.15",
+        "laravel/pint": "^1.0",
+        "spatie/ray": "^1.28"
+    },
+    "autoload": {
+        "psr-4": {
+            "BiglySales\\BiglySalesAiSdk\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BiglySales\\BiglySalesAiSdk\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+            "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
