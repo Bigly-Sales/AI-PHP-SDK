@@ -2,15 +2,21 @@
 
 namespace BiglySales\BiglySalesAiSdk;
 
+use BiglySales\BiglySalesAiSdk\Requests\Clients;
 use BiglySales\BiglySalesAiSdk\Requests\EmailCompletions;
 use BiglySales\BiglySalesAiSdk\Requests\SmsCompletions;
+use BiglySales\BiglySalesAiSdk\Requests\Tokens;
 use Saloon\Http\Connector;
 
 class BiglySalesAi extends Connector
 {
-    public function __construct(public readonly string $api_key)
-    {
-        //
+    public function __construct(
+        public readonly string $api_key,
+        public readonly ?string $bearer_token = null
+    ) {
+        if($this->bearer_token){
+            $this->withTokenAuth($this->bearer_token);
+        }
     }
 
     public function resolveBaseUrl(): string
@@ -21,8 +27,9 @@ class BiglySalesAi extends Connector
     public function defaultHeaders(): array
     {
         return [
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
+            'Accept'        => 'application/json',
+            'Content-Type'  => 'application/json',
+            'BIGLY-API-KEY' => $this->api_key
         ];
     }
 
@@ -34,5 +41,10 @@ class BiglySalesAi extends Connector
     public function smsCompletions(): SmsCompletions
     {
         return new SmsCompletions($this);
+    }
+
+    public function clients()
+    {
+        return new Clients($this);
     }
 }
