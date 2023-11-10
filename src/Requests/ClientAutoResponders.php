@@ -31,7 +31,6 @@ class ClientAutoResponders
         );
     }
 
-
     public function show(int|string $auto_responder_id)
     {
         return $this->connector->send(new ShowClientAutoResponderRequest($this->client_id, $auto_responder_id));

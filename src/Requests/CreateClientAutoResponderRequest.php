@@ -31,7 +31,7 @@ class CreateClientAutoResponderRequest extends Request implements HasBody
     {
         return [
             'reference_id' => $this->reference_id,
-            'type'         => $this->type->value,
+            'type' => $this->type->value,
         ];
     }
 }

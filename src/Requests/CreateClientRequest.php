@@ -24,25 +24,24 @@ class CreateClientRequest extends Request
     {
         $multipart = [];
 
-        foreach ($this->files as $k => $file)
-        {
+        foreach ($this->files as $k => $file) {
             $multipart[] = (new MultipartValue(
-                    name: "files[$k]",
-                   value: file_get_contents($file['path']),
+                name: "files[$k]",
+                value: file_get_contents($file['path']),
                 filename: $file['filename'],
-                 headers: [
+                headers: [
                     'Content-Type' => 'text/plain',
                 ]
             ))->toArray();
         }
 
         $multipart[] = [
-            'name'     => 'reference_id',
-            'contents' => $this->reference_id
+            'name' => 'reference_id',
+            'contents' => $this->reference_id,
         ];
 
         return [
-            'multipart' => $multipart
+            'multipart' => $multipart,
         ];
     }
 }
