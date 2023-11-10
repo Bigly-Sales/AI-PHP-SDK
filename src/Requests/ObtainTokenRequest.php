@@ -4,7 +4,6 @@ namespace BiglySales\BiglySalesAiSdk\Requests;
 
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Http\SoloRequest;
 use Saloon\Traits\Body\HasJsonBody;
 
@@ -29,7 +28,7 @@ class ObtainTokenRequest extends SoloRequest implements HasBody
     public function defaultHeaders(): array
     {
         return [
-            'Accept'       => 'application/json',
+            'Accept' => 'application/json',
             'Content-Type' => 'application/json',
         ];
     }
@@ -37,7 +36,7 @@ class ObtainTokenRequest extends SoloRequest implements HasBody
     protected function defaultBody(): array
     {
         return [
-            'email'    => $this->email,
+            'email' => $this->email,
             'password' => $this->password,
         ];
     }

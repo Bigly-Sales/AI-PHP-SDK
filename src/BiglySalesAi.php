@@ -2,10 +2,11 @@
 
 namespace BiglySales\BiglySalesAiSdk;
 
+use BiglySales\BiglySalesAiSdk\Requests\ClientAutoResponders;
+use BiglySales\BiglySalesAiSdk\Requests\ClientDocuments;
 use BiglySales\BiglySalesAiSdk\Requests\Clients;
 use BiglySales\BiglySalesAiSdk\Requests\EmailCompletions;
 use BiglySales\BiglySalesAiSdk\Requests\SmsCompletions;
-use BiglySales\BiglySalesAiSdk\Requests\Tokens;
 use Saloon\Http\Connector;
 
 class BiglySalesAi extends Connector
@@ -14,7 +15,7 @@ class BiglySalesAi extends Connector
         public readonly string $api_key,
         public readonly ?string $bearer_token = null
     ) {
-        if($this->bearer_token){
+        if ($this->bearer_token) {
             $this->withTokenAuth($this->bearer_token);
         }
     }
@@ -27,9 +28,9 @@ class BiglySalesAi extends Connector
     public function defaultHeaders(): array
     {
         return [
-            'Accept'        => 'application/json',
-            'Content-Type'  => 'application/json',
-            'BIGLY-API-KEY' => $this->api_key
+            'Accept' => 'application/json',
+            //'Content-Type' => 'application/json',
+            'BIGLY-API-KEY' => $this->api_key,
         ];
     }
 
@@ -46,5 +47,15 @@ class BiglySalesAi extends Connector
     public function clients()
     {
         return new Clients($this);
+    }
+
+    public function clientDocuments(int|string $id)
+    {
+        return new ClientDocuments($this, $id);
+    }
+
+    public function clientAutoResponders(int|string $id)
+    {
+        return new ClientAutoResponders($this, $id);
     }
 }

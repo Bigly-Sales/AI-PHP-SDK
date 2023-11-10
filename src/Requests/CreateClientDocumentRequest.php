@@ -6,27 +6,27 @@ use Saloon\Data\MultipartValue;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 
-class CreateClientRequest extends Request
+class CreateClientDocumentRequest extends Request
 {
     protected Method $method = Method::POST;
 
-    public function __construct(public string|int $reference_id, public array $files = [])
+    public function __construct(public readonly string|int $client_id, public readonly array $files = [])
     {
         //
     }
 
     public function resolveEndpoint(): string
     {
-        return '/clients';
+        return "/clients/{$this->client_id}/documents";
     }
 
     public function defaultConfig(): array
     {
-        $multipart = [];
+        $multiparts = [];
 
-        foreach ($this->files as $k => $file)
+        foreach($this->files as $k => $file)
         {
-            $multipart[] = (new MultipartValue(
+            $multiparts[] = (new MultipartValue(
                     name: "files[$k]",
                    value: file_get_contents($file['path']),
                 filename: $file['filename'],
@@ -36,13 +36,8 @@ class CreateClientRequest extends Request
             ))->toArray();
         }
 
-        $multipart[] = [
-            'name'     => 'reference_id',
-            'contents' => $this->reference_id
-        ];
-
         return [
-            'multipart' => $multipart
+            'multipart' => $multiparts
         ];
     }
 }

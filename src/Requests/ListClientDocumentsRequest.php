@@ -7,20 +7,20 @@ use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasJsonBody;
 
-class ListClientsRequest extends Request implements HasBody
+class ListClientDocumentsRequest extends Request implements HasBody
 {
     use HasJsonBody;
 
     protected Method $method = Method::GET;
 
-    public function __construct(public readonly int $page = 1)
+    public function __construct(public int|string $client_id, public readonly int $page = 1)
     {
         //
     }
 
     public function resolveEndpoint(): string
     {
-        return '/clients';
+        return "/clients/{$this->client_id}/documents";
     }
 
     protected function defaultBody(): array
