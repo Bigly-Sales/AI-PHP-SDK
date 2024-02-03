@@ -13,6 +13,8 @@ class Clients
 
     public function create(string|int $reference_id, array $files = [])
     {
+        $this->connector->headers()->remove('Content-Type');
+
         return $this->connector->send(new CreateClientRequest($reference_id, $files));
     }
 

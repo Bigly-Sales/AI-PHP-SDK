@@ -29,7 +29,7 @@ class BiglySalesAi extends Connector
     {
         return [
             'Accept' => 'application/json',
-            //'Content-Type' => 'application/json',
+            'Content-Type' => 'application/json',
             'BIGLY-API-KEY' => $this->api_key,
         ];
     }

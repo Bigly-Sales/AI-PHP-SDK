@@ -20,6 +20,8 @@ class ClientDocuments
 
     public function create(array $files = [])
     {
+        $this->connector->headers()->remove('Content-Type');
+
         return $this->connector->send(new CreateClientDocumentRequest($this->client_id, $files));
     }
 
