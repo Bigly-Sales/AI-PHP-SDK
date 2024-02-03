@@ -24,20 +24,19 @@ class CreateClientDocumentRequest extends Request
     {
         $multiparts = [];
 
-        foreach($this->files as $k => $file)
-        {
+        foreach ($this->files as $k => $file) {
             $multiparts[] = (new MultipartValue(
-                    name: "files[$k]",
-                   value: file_get_contents($file['path']),
+                name: "files[$k]",
+                value: file_get_contents($file['path']),
                 filename: $file['filename'],
-                 headers: [
+                headers: [
                     'Content-Type' => 'text/plain',
                 ]
             ))->toArray();
         }
 
         return [
-            'multipart' => $multiparts
+            'multipart' => $multiparts,
         ];
     }
 }

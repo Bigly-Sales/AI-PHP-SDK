@@ -20,7 +20,7 @@ use BiglySales\BiglySalesAiSdk\Requests\UpdateClientRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
 
-beforeEach(function(){
+beforeEach(function () {
 
     $this->api_key = '84cf4ec6-372e-41f0-9a1d-7d4f71ab929e';
 
@@ -37,7 +37,7 @@ beforeEach(function(){
 });
 
 it('can produce email completion', function () {
-    
+
     $parsed_output = [
         'subject' => 'Test Subject',
         'body' => 'Test Body',
@@ -48,9 +48,9 @@ it('can produce email completion', function () {
     $mockClient = new MockClient([
         BiglySalesAi::class => MockResponse::make($this->api_key, 200),
         CreateEmailCompletionRequest::class => MockResponse::make([
-            'trace_id'      => 'd380611e-c32a-486b-8459-489c02fd2ce6',
-            'info'          => 'Given that AI can sometimes hallucinate we have provided you the full completion in addition to a parsed',
-            'completion'    => $completion,
+            'trace_id' => 'd380611e-c32a-486b-8459-489c02fd2ce6',
+            'info' => 'Given that AI can sometimes hallucinate we have provided you the full completion in addition to a parsed',
+            'completion' => $completion,
             'parsed_output' => $parsed_output,
         ], 200),
         ObtainTokenRequest::class => MockResponse::make('13|wTocXqXDIcJpPEsDlSaShuhqYn3fDbA5npDC9mr8', 200),
@@ -94,7 +94,6 @@ it('can produce email completion', function () {
     expect($response->json('completion'))->toBeString();
     expect($response->json('parsed_output'))->toBeArray();
 });
-
 
 it('can produce sms completion', function () {
 
@@ -154,47 +153,47 @@ it('can produce sms completion', function () {
 it('can create client', function () {
 
     $response_data = [
-        "data" => [
-            "id" => 1,
-            "api_organization_id" => 1,
-            "reference_id" => "test-654c18aacfddf",
-            "name" => null,
-            "created_at" => "2023-11-09T20:31:19.000000Z",
-            "updated_at" => "2023-11-09T20:31:19.000000Z",
-            "deleted_at" => null,
-            "documents" => [
+        'data' => [
+            'id' => 1,
+            'api_organization_id' => 1,
+            'reference_id' => 'test-654c18aacfddf',
+            'name' => null,
+            'created_at' => '2023-11-09T20:31:19.000000Z',
+            'updated_at' => '2023-11-09T20:31:19.000000Z',
+            'deleted_at' => null,
+            'documents' => [
                 [
-                    "id" => 7,
-                    "documentable_type" => "App\Models\ApiClient",
-                    "documentable_id" => 1,
-                    "name" => "test-file.txt",
-                    "path" => "31/T7FuXpMnCqkSzgvTS1IM7qYAvWHqQosPRreFdgTp.txt",
-                    "mime" => "text/plain",
-                    "extension" => "txt",
-                    "created_at" => "2023-11-09T20:31:19.000000Z",
-                    "updated_at" => "2023-11-09T20:31:19.000000Z",
-                    "deleted_at" => null,
-                    "links" => [
+                    'id' => 7,
+                    'documentable_type' => "App\Models\ApiClient",
+                    'documentable_id' => 1,
+                    'name' => 'test-file.txt',
+                    'path' => '31/T7FuXpMnCqkSzgvTS1IM7qYAvWHqQosPRreFdgTp.txt',
+                    'mime' => 'text/plain',
+                    'extension' => 'txt',
+                    'created_at' => '2023-11-09T20:31:19.000000Z',
+                    'updated_at' => '2023-11-09T20:31:19.000000Z',
+                    'deleted_at' => null,
+                    'links' => [
                         'api' => [
                             'show' => 'https://biglyai.test/api/v1/documents/1',
                             'download' => 'https://biglyai.test/api/v1/documents/1/download',
                         ],
-                        "ui" => []
+                        'ui' => [],
                     ],
                 ],
             ],
         ],
-        "links" => [
-            "api" => [
-                "show" => "https://biglyai.test/api/v1/clients/1",
-                "update" => "https://biglyai.test/api/v1/clients/1",
+        'links' => [
+            'api' => [
+                'show' => 'https://biglyai.test/api/v1/clients/1',
+                'update' => 'https://biglyai.test/api/v1/clients/1',
             ],
-            "ui" => [],
+            'ui' => [],
         ],
     ];
 
     $mockClient = new MockClient([
-        CreateClientRequest::class => MockResponse::make($response_data)
+        CreateClientRequest::class => MockResponse::make($response_data),
     ]);
 
     $this->api->withMockClient($mockClient);
@@ -203,9 +202,9 @@ it('can create client', function () {
         uniqid('test-'),
         [
             [
-                'name'      => 'files',
-                'filename'  => 'test-file.txt',
-                'path'      => __DIR__.'/tmp/test-file.txt',
+                'name' => 'files',
+                'filename' => 'test-file.txt',
+                'path' => __DIR__.'/tmp/test-file.txt',
             ],
         ]
     );
@@ -220,26 +219,26 @@ it('can list clients', function () {
     $response_data = [
         'data' => [
             [
-                "id" => 1,
-                "api_organization_id" => 1,
-                "reference_id" => "Y2u7hCc7yKDZmlTN",
-                "name" => null,
-                "created_at" => "2023-11-07T20:55:26.000000Z",
-                "updated_at" => "2023-11-07T20:55:26.000000Z",
-                "deleted_at" => null,
-                "links" => [
-                    "api" => [
-                        "show" => "https://biglyai.test/api/v1/clients/1",
-                        "update" => "https://biglyai.test/api/v1/clients/1"
+                'id' => 1,
+                'api_organization_id' => 1,
+                'reference_id' => 'Y2u7hCc7yKDZmlTN',
+                'name' => null,
+                'created_at' => '2023-11-07T20:55:26.000000Z',
+                'updated_at' => '2023-11-07T20:55:26.000000Z',
+                'deleted_at' => null,
+                'links' => [
+                    'api' => [
+                        'show' => 'https://biglyai.test/api/v1/clients/1',
+                        'update' => 'https://biglyai.test/api/v1/clients/1',
                     ],
-                    "ui" => []
-                ]
-            ]
-        ]
+                    'ui' => [],
+                ],
+            ],
+        ],
     ];
 
     $mockClient = new MockClient([
-        ListClientsRequest::class => MockResponse::make($response_data)
+        ListClientsRequest::class => MockResponse::make($response_data),
     ]);
 
     $this->api->withMockClient($mockClient);
@@ -253,25 +252,25 @@ it('can show client', function () {
 
     $response_data = [
         'data' => [
-            "id" => 1,
-            "api_organization_id" => 1,
-            "reference_id" => "Y2u7hCc7yKDZmlTN",
-            "name" => null,
-            "created_at" => "2023-11-07T20:55:26.000000Z",
-            "updated_at" => "2023-11-07T20:55:26.000000Z",
-            "deleted_at" => null,
-            "links" => [
-                "api" => [
-                    "show" => "https://biglyai.test/api/v1/clients/1",
-                    "update" => "https://biglyai.test/api/v1/clients/1"
+            'id' => 1,
+            'api_organization_id' => 1,
+            'reference_id' => 'Y2u7hCc7yKDZmlTN',
+            'name' => null,
+            'created_at' => '2023-11-07T20:55:26.000000Z',
+            'updated_at' => '2023-11-07T20:55:26.000000Z',
+            'deleted_at' => null,
+            'links' => [
+                'api' => [
+                    'show' => 'https://biglyai.test/api/v1/clients/1',
+                    'update' => 'https://biglyai.test/api/v1/clients/1',
                 ],
-                "ui" => []
-            ]
-        ]
+                'ui' => [],
+            ],
+        ],
     ];
 
     $mockClient = new MockClient([
-        ShowClientRequest::class => MockResponse::make($response_data)
+        ShowClientRequest::class => MockResponse::make($response_data),
     ]);
 
     $this->api->withMockClient($mockClient);
@@ -285,25 +284,25 @@ it('can update client', function () {
 
     $response_data = [
         'data' => [
-            "id" => 1,
-            "api_organization_id" => 1,
-            "reference_id" => "new-reference-id",
-            "name" => null,
-            "created_at" => "2023-11-07T20:55:26.000000Z",
-            "updated_at" => "2023-11-07T20:55:26.000000Z",
-            "deleted_at" => null,
-            "links" => [
-                "api" => [
-                    "show" => "https://biglyai.test/api/v1/clients/1",
-                    "update" => "https://biglyai.test/api/v1/clients/1"
+            'id' => 1,
+            'api_organization_id' => 1,
+            'reference_id' => 'new-reference-id',
+            'name' => null,
+            'created_at' => '2023-11-07T20:55:26.000000Z',
+            'updated_at' => '2023-11-07T20:55:26.000000Z',
+            'deleted_at' => null,
+            'links' => [
+                'api' => [
+                    'show' => 'https://biglyai.test/api/v1/clients/1',
+                    'update' => 'https://biglyai.test/api/v1/clients/1',
                 ],
-                "ui" => []
-            ]
-        ]
+                'ui' => [],
+            ],
+        ],
     ];
 
     $mockClient = new MockClient([
-        UpdateClientRequest::class => MockResponse::make($response_data)
+        UpdateClientRequest::class => MockResponse::make($response_data),
     ]);
 
     $this->api->withMockClient($mockClient);
@@ -313,30 +312,29 @@ it('can update client', function () {
     expect($response->json())->toEqual($response_data);
 });
 
-
 it('can delete client', function () {
 
     $response_data = [
         'data' => [
-            "id" => 1,
-            "api_organization_id" => 1,
-            "reference_id" => "new-reference-id",
-            "name" => null,
-            "created_at" => "2023-11-07T20:55:26.000000Z",
-            "updated_at" => "2023-11-07T20:55:26.000000Z",
-            "deleted_at" => "2023-11-07T20:56:12.000000Z",
-            "links" => [
-                "api" => [
-                    "show" => "https://biglyai.test/api/v1/clients/1",
-                    "update" => "https://biglyai.test/api/v1/clients/1"
+            'id' => 1,
+            'api_organization_id' => 1,
+            'reference_id' => 'new-reference-id',
+            'name' => null,
+            'created_at' => '2023-11-07T20:55:26.000000Z',
+            'updated_at' => '2023-11-07T20:55:26.000000Z',
+            'deleted_at' => '2023-11-07T20:56:12.000000Z',
+            'links' => [
+                'api' => [
+                    'show' => 'https://biglyai.test/api/v1/clients/1',
+                    'update' => 'https://biglyai.test/api/v1/clients/1',
                 ],
-                "ui" => []
-            ]
-        ]
+                'ui' => [],
+            ],
+        ],
     ];
 
     $mockClient = new MockClient([
-        DeleteClientRequest::class => MockResponse::make($response_data)
+        DeleteClientRequest::class => MockResponse::make($response_data),
     ]);
 
     $this->api->withMockClient($mockClient);
@@ -346,67 +344,66 @@ it('can delete client', function () {
     expect($response->json())->toEqual($response_data);
 });
 
-
 it('can list client documents', function () {
 
     $response_data = [
-        "data" => [
+        'data' => [
             [
-                "id" => 2,
-                "documentable_type" => "App\Models\ApiClient",
-                "documentable_id" => 26,
-                "name" => "test-file.txt",
-                "path" => "26/a8dcN2RLCP7gLCemZkQV6eumDU8T5nXxZiCm9ajT.txt",
-                "mime" => "text/plain",
-                "extension" => "txt",
-                "created_at" => "2023-11-09T13:27:42.000000Z",
-                "updated_at" => "2023-11-09T13:27:42.000000Z",
-                "deleted_at" => null,
-                "links" => [
-                    "api" => [
-                        "show" => "https://biglyai.test/api/v1/clients/26/documents/2",
-                        "delete" => "https://biglyai.test/api/v1/clients/26/documents/2",
+                'id' => 2,
+                'documentable_type' => "App\Models\ApiClient",
+                'documentable_id' => 26,
+                'name' => 'test-file.txt',
+                'path' => '26/a8dcN2RLCP7gLCemZkQV6eumDU8T5nXxZiCm9ajT.txt',
+                'mime' => 'text/plain',
+                'extension' => 'txt',
+                'created_at' => '2023-11-09T13:27:42.000000Z',
+                'updated_at' => '2023-11-09T13:27:42.000000Z',
+                'deleted_at' => null,
+                'links' => [
+                    'api' => [
+                        'show' => 'https://biglyai.test/api/v1/clients/26/documents/2',
+                        'delete' => 'https://biglyai.test/api/v1/clients/26/documents/2',
                     ],
-                    "ui" => [],
+                    'ui' => [],
                 ],
             ],
         ],
-        "links" => [
-            "first" => "https://biglyai.test/api/v1/clients/26/documents?page=1",
-            "last" => "https://biglyai.test/api/v1/clients/26/documents?page=1",
-            "prev" => null,
-            "next" => null,
+        'links' => [
+            'first' => 'https://biglyai.test/api/v1/clients/26/documents?page=1',
+            'last' => 'https://biglyai.test/api/v1/clients/26/documents?page=1',
+            'prev' => null,
+            'next' => null,
         ],
-        "meta" => [
-            "current_page" => 1,
-            "from" => 1,
-            "last_page" => 1,
-            "links" => [
+        'meta' => [
+            'current_page' => 1,
+            'from' => 1,
+            'last_page' => 1,
+            'links' => [
                 [
-                    "url" => null,
-                    "label" => "&laquo; Previous",
-                    "active" => false,
+                    'url' => null,
+                    'label' => '&laquo; Previous',
+                    'active' => false,
                 ],
                 [
-                    "url" => "https://biglyai.test/api/v1/clients/26/documents?page=1",
-                    "label" => "1",
-                    "active" => true,
+                    'url' => 'https://biglyai.test/api/v1/clients/26/documents?page=1',
+                    'label' => '1',
+                    'active' => true,
                 ],
                 [
-                    "url" => null,
-                    "label" => "Next &raquo;",
-                    "active" => false,
+                    'url' => null,
+                    'label' => 'Next &raquo;',
+                    'active' => false,
                 ],
             ],
-            "path" => "https://biglyai.test/api/v1/clients/26/documents",
-            "per_page" => 15,
-            "to" => 1,
-            "total" => 1,
+            'path' => 'https://biglyai.test/api/v1/clients/26/documents',
+            'per_page' => 15,
+            'to' => 1,
+            'total' => 1,
         ],
     ];
 
     $mockClient = new MockClient([
-        ListClientDocumentsRequest::class => MockResponse::make($response_data)
+        ListClientDocumentsRequest::class => MockResponse::make($response_data),
     ]);
 
     $this->api->withMockClient($mockClient);
@@ -416,119 +413,118 @@ it('can list client documents', function () {
     expect($response->json())->toEqual($response_data);
 });
 
-
 it('can create client document', function () {
 
     $response_data = [
-        "data" => [
+        'data' => [
             [
-                "id" => 8,
-                "documentable_type" => "App\Models\ApiClient",
-                "documentable_id" => 26,
-                "name" => "test-file.txt",
-                "path" => "26/bDVh3tZFD8gjwllLm3UL2MNa18X4vHciUukfkKq5.txt",
-                "mime" => "text/plain",
-                "extension" => "txt",
-                "created_at" => "2023-11-09T23:17:55.000000Z",
-                "updated_at" => "2023-11-09T23:17:55.000000Z",
-                "deleted_at" => null,
-                "links" => [
-                    "api" => [
-                        "show" => "https://biglyai.test/api/v1/clients/26/documents/8",
-                        "delete" => "https://biglyai.test/api/v1/clients/26/documents/8",
+                'id' => 8,
+                'documentable_type' => "App\Models\ApiClient",
+                'documentable_id' => 26,
+                'name' => 'test-file.txt',
+                'path' => '26/bDVh3tZFD8gjwllLm3UL2MNa18X4vHciUukfkKq5.txt',
+                'mime' => 'text/plain',
+                'extension' => 'txt',
+                'created_at' => '2023-11-09T23:17:55.000000Z',
+                'updated_at' => '2023-11-09T23:17:55.000000Z',
+                'deleted_at' => null,
+                'links' => [
+                    'api' => [
+                        'show' => 'https://biglyai.test/api/v1/clients/26/documents/8',
+                        'delete' => 'https://biglyai.test/api/v1/clients/26/documents/8',
                     ],
-                    "ui" => [],
+                    'ui' => [],
                 ],
             ],
             [
-                "id" => 9,
-                "documentable_type" => "App\Models\ApiClient",
-                "documentable_id" => 26,
-                "name" => "test-file.txt",
-                "path" => "26/BXxKBDXJBvxXCqI7OupoQgOvr3MCCTbN2dBLXhlW.txt",
-                "mime" => "text/plain",
-                "extension" => "txt",
-                "created_at" => "2023-11-09T23:17:55.000000Z",
-                "updated_at" => "2023-11-09T23:17:55.000000Z",
-                "deleted_at" => null,
-                "links" => [
-                    "api" => [
-                        "show" => "https://biglyai.test/api/v1/clients/26/documents/9",
-                        "delete" => "https://biglyai.test/api/v1/clients/26/documents/9",
+                'id' => 9,
+                'documentable_type' => "App\Models\ApiClient",
+                'documentable_id' => 26,
+                'name' => 'test-file.txt',
+                'path' => '26/BXxKBDXJBvxXCqI7OupoQgOvr3MCCTbN2dBLXhlW.txt',
+                'mime' => 'text/plain',
+                'extension' => 'txt',
+                'created_at' => '2023-11-09T23:17:55.000000Z',
+                'updated_at' => '2023-11-09T23:17:55.000000Z',
+                'deleted_at' => null,
+                'links' => [
+                    'api' => [
+                        'show' => 'https://biglyai.test/api/v1/clients/26/documents/9',
+                        'delete' => 'https://biglyai.test/api/v1/clients/26/documents/9',
                     ],
-                    "ui" => [],
+                    'ui' => [],
                 ],
             ],
             [
-                "id" => 10,
-                "documentable_type" => "App\Models\ApiClient",
-                "documentable_id" => 26,
-                "name" => "test-file.txt",
-                "path" => "26/6iXK3V2N3w0q3rk7v8BNSSTPKYF2QU6oQw59idMP.txt",
-                "mime" => "text/plain",
-                "extension" => "txt",
-                "created_at" => "2023-11-09T23:17:55.000000Z",
-                "updated_at" => "2023-11-09T23:17:55.000000Z",
-                "deleted_at" => null,
-                "links" => [
-                    "api" => [
-                        "show" => "https://biglyai.test/api/v1/clients/26/documents/10",
-                        "delete" => "https://biglyai.test/api/v1/clients/26/documents/10",
+                'id' => 10,
+                'documentable_type' => "App\Models\ApiClient",
+                'documentable_id' => 26,
+                'name' => 'test-file.txt',
+                'path' => '26/6iXK3V2N3w0q3rk7v8BNSSTPKYF2QU6oQw59idMP.txt',
+                'mime' => 'text/plain',
+                'extension' => 'txt',
+                'created_at' => '2023-11-09T23:17:55.000000Z',
+                'updated_at' => '2023-11-09T23:17:55.000000Z',
+                'deleted_at' => null,
+                'links' => [
+                    'api' => [
+                        'show' => 'https://biglyai.test/api/v1/clients/26/documents/10',
+                        'delete' => 'https://biglyai.test/api/v1/clients/26/documents/10',
                     ],
-                    "ui" => [],
+                    'ui' => [],
                 ],
             ],
             [
-                "id" => 11,
-                "documentable_type" => "App\Models\ApiClient",
-                "documentable_id" => 26,
-                "name" => "test-file.txt",
-                "path" => "26/WE51M3qMqhWjVlz480zdIXM9w13lDnHTG2FoC8qY.txt",
-                "mime" => "text/plain",
-                "extension" => "txt",
-                "created_at" => "2023-11-09T23:17:55.000000Z",
-                "updated_at" => "2023-11-09T23:17:55.000000Z",
-                "deleted_at" => null,
-                "links" => [
-                    "api" => [
-                        "show" => "https://biglyai.test/api/v1/clients/26/documents/11",
-                        "delete" => "https://biglyai.test/api/v1/clients/26/documents/11",
+                'id' => 11,
+                'documentable_type' => "App\Models\ApiClient",
+                'documentable_id' => 26,
+                'name' => 'test-file.txt',
+                'path' => '26/WE51M3qMqhWjVlz480zdIXM9w13lDnHTG2FoC8qY.txt',
+                'mime' => 'text/plain',
+                'extension' => 'txt',
+                'created_at' => '2023-11-09T23:17:55.000000Z',
+                'updated_at' => '2023-11-09T23:17:55.000000Z',
+                'deleted_at' => null,
+                'links' => [
+                    'api' => [
+                        'show' => 'https://biglyai.test/api/v1/clients/26/documents/11',
+                        'delete' => 'https://biglyai.test/api/v1/clients/26/documents/11',
                     ],
-                    "ui" => [],
+                    'ui' => [],
                 ],
             ],
             [
-                "id" => 12,
-                "documentable_type" => "App\Models\ApiClient",
-                "documentable_id" => 26,
-                "name" => "test-file.txt",
-                "path" => "26/i4PjDH63djYqxDIs2PsXSmShmHRGcBh8urNpvuir.txt",
-                "mime" => "text/plain",
-                "extension" => "txt",
-                "created_at" => "2023-11-09T23:17:55.000000Z",
-                "updated_at" => "2023-11-09T23:17:55.000000Z",
-                "deleted_at" => null,
-                "links" => [
-                    "api" => [
-                        "show" => "https://biglyai.test/api/v1/clients/26/documents/12",
-                        "delete" => "https://biglyai.test/api/v1/clients/26/documents/12",
+                'id' => 12,
+                'documentable_type' => "App\Models\ApiClient",
+                'documentable_id' => 26,
+                'name' => 'test-file.txt',
+                'path' => '26/i4PjDH63djYqxDIs2PsXSmShmHRGcBh8urNpvuir.txt',
+                'mime' => 'text/plain',
+                'extension' => 'txt',
+                'created_at' => '2023-11-09T23:17:55.000000Z',
+                'updated_at' => '2023-11-09T23:17:55.000000Z',
+                'deleted_at' => null,
+                'links' => [
+                    'api' => [
+                        'show' => 'https://biglyai.test/api/v1/clients/26/documents/12',
+                        'delete' => 'https://biglyai.test/api/v1/clients/26/documents/12',
                     ],
-                    "ui" => [],
+                    'ui' => [],
                 ],
             ],
         ],
     ];
 
     $mockClient = new MockClient([
-        CreateClientDocumentRequest::class => MockResponse::make($response_data)
+        CreateClientDocumentRequest::class => MockResponse::make($response_data),
     ]);
 
     $this->api->withMockClient($mockClient);
 
     $file = [
-        'name'     => 'files',
+        'name' => 'files',
         'filename' => 'test-file.txt',
-        'path'     => __DIR__.'/tmp/test-file.txt',
+        'path' => __DIR__.'/tmp/test-file.txt',
     ];
 
     $files[] = $file;
@@ -546,61 +542,61 @@ it('can create client document', function () {
 it('can show client document', function () {
 
     $response_data = [
-        "data" => [
-            "id" => 2,
-            "documentable_type" => "App\Models\ApiClient",
-            "documentable_id" => 26,
-            "name" => "test-file.txt",
-            "path" => "26/a8dcN2RLCP7gLCemZkQV6eumDU8T5nXxZiCm9ajT.txt",
-            "mime" => "text/plain",
-            "extension" => "txt",
-            "created_at" => "2023-11-09T13:27:42.000000Z",
-            "updated_at" => "2023-11-09T13:27:42.000000Z",
-            "deleted_at" => null,
-            "links" => [
-                "api" => [
-                    "show" => "https://biglyai.test/api/v1/clients/26/documents/2",
-                    "delete" => "https://biglyai.test/api/v1/clients/26/documents/2",
+        'data' => [
+            'id' => 2,
+            'documentable_type' => "App\Models\ApiClient",
+            'documentable_id' => 26,
+            'name' => 'test-file.txt',
+            'path' => '26/a8dcN2RLCP7gLCemZkQV6eumDU8T5nXxZiCm9ajT.txt',
+            'mime' => 'text/plain',
+            'extension' => 'txt',
+            'created_at' => '2023-11-09T13:27:42.000000Z',
+            'updated_at' => '2023-11-09T13:27:42.000000Z',
+            'deleted_at' => null,
+            'links' => [
+                'api' => [
+                    'show' => 'https://biglyai.test/api/v1/clients/26/documents/2',
+                    'delete' => 'https://biglyai.test/api/v1/clients/26/documents/2',
                 ],
-                "ui" => [],
+                'ui' => [],
             ],
         ],
-        "links" => [
-            "first" => "https://biglyai.test/api/v1/clients/26/documents?page=1",
-            "last" => "https://biglyai.test/api/v1/clients/26/documents?page=1",
-            "prev" => null,
-            "next" => null,
+        'links' => [
+            'first' => 'https://biglyai.test/api/v1/clients/26/documents?page=1',
+            'last' => 'https://biglyai.test/api/v1/clients/26/documents?page=1',
+            'prev' => null,
+            'next' => null,
         ],
-        "meta" => [
-            "current_page" => 1,
-            "from" => 1,
-            "last_page" => 1,
-            "links" => [
+        'meta' => [
+            'current_page' => 1,
+            'from' => 1,
+            'last_page' => 1,
+            'links' => [
                 [
-                    "url" => null,
-                    "label" => "&laquo; Previous",
-                    "active" => false,
+                    'url' => null,
+                    'label' => '&laquo; Previous',
+                    'active' => false,
                 ],
                 [
-                    "url" => "https://biglyai.test/api/v1/clients/26/documents?page=1",
-                    "label" => "1",
-                    "active" => true,
+                    'url' => 'https://biglyai.test/api/v1/clients/26/documents?page=1',
+                    'label' => '1',
+                    'active' => true,
                 ],
                 [
-                    "url" => null,
-                    "label" => "Next &raquo;",
-                    "active" => false,
+                    'url' => null,
+                    'label' => 'Next &raquo;',
+                    'active' => false,
                 ],
             ],
-            "path" => "https://biglyai.test/api/v1/clients/26/documents",
-            "per_page" => 15,
-            "to" => 1,
-            "total" => 1,
+            'path' => 'https://biglyai.test/api/v1/clients/26/documents',
+            'per_page' => 15,
+            'to' => 1,
+            'total' => 1,
         ],
     ];
 
     $mockClient = new MockClient([
-        ShowClientDocumentRequest::class => MockResponse::make($response_data)
+        ShowClientDocumentRequest::class => MockResponse::make($response_data),
     ]);
 
     $this->api->withMockClient($mockClient);
@@ -610,65 +606,64 @@ it('can show client document', function () {
     expect($response->json())->toEqual($response_data);
 });
 
-
 it('can delete client document', function () {
 
     $response_data = [
-        "data" => [
-            "id" => 2,
-            "documentable_type" => "App\Models\ApiClient",
-            "documentable_id" => 26,
-            "name" => "test-file.txt",
-            "path" => "26/a8dcN2RLCP7gLCemZkQV6eumDU8T5nXxZiCm9ajT.txt",
-            "mime" => "text/plain",
-            "extension" => "txt",
-            "created_at" => "2023-11-09T13:27:42.000000Z",
-            "updated_at" => "2023-11-09T13:27:42.000000Z",
-            "deleted_at" => "2023-11-09T13:28:42.000000Z",
-            "links" => [
-                "api" => [
-                    "show" => "https://biglyai.test/api/v1/clients/26/documents/2",
-                    "delete" => "https://biglyai.test/api/v1/clients/26/documents/2",
+        'data' => [
+            'id' => 2,
+            'documentable_type' => "App\Models\ApiClient",
+            'documentable_id' => 26,
+            'name' => 'test-file.txt',
+            'path' => '26/a8dcN2RLCP7gLCemZkQV6eumDU8T5nXxZiCm9ajT.txt',
+            'mime' => 'text/plain',
+            'extension' => 'txt',
+            'created_at' => '2023-11-09T13:27:42.000000Z',
+            'updated_at' => '2023-11-09T13:27:42.000000Z',
+            'deleted_at' => '2023-11-09T13:28:42.000000Z',
+            'links' => [
+                'api' => [
+                    'show' => 'https://biglyai.test/api/v1/clients/26/documents/2',
+                    'delete' => 'https://biglyai.test/api/v1/clients/26/documents/2',
                 ],
-                "ui" => [],
+                'ui' => [],
             ],
         ],
-        "links" => [
-            "first" => "https://biglyai.test/api/v1/clients/26/documents?page=1",
-            "last" => "https://biglyai.test/api/v1/clients/26/documents?page=1",
-            "prev" => null,
-            "next" => null,
+        'links' => [
+            'first' => 'https://biglyai.test/api/v1/clients/26/documents?page=1',
+            'last' => 'https://biglyai.test/api/v1/clients/26/documents?page=1',
+            'prev' => null,
+            'next' => null,
         ],
-        "meta" => [
-            "current_page" => 1,
-            "from" => 1,
-            "last_page" => 1,
-            "links" => [
+        'meta' => [
+            'current_page' => 1,
+            'from' => 1,
+            'last_page' => 1,
+            'links' => [
                 [
-                    "url" => null,
-                    "label" => "&laquo; Previous",
-                    "active" => false,
+                    'url' => null,
+                    'label' => '&laquo; Previous',
+                    'active' => false,
                 ],
                 [
-                    "url" => "https://biglyai.test/api/v1/clients/26/documents?page=1",
-                    "label" => "1",
-                    "active" => true,
+                    'url' => 'https://biglyai.test/api/v1/clients/26/documents?page=1',
+                    'label' => '1',
+                    'active' => true,
                 ],
                 [
-                    "url" => null,
-                    "label" => "Next &raquo;",
-                    "active" => false,
+                    'url' => null,
+                    'label' => 'Next &raquo;',
+                    'active' => false,
                 ],
             ],
-            "path" => "https://biglyai.test/api/v1/clients/26/documents",
-            "per_page" => 15,
-            "to" => 1,
-            "total" => 1,
+            'path' => 'https://biglyai.test/api/v1/clients/26/documents',
+            'per_page' => 15,
+            'to' => 1,
+            'total' => 1,
         ],
     ];
 
     $mockClient = new MockClient([
-        DeleteClientDocumentRequest::class => MockResponse::make($response_data)
+        DeleteClientDocumentRequest::class => MockResponse::make($response_data),
     ]);
 
     $this->api->withMockClient($mockClient);
@@ -678,33 +673,32 @@ it('can delete client document', function () {
     expect($response->json())->toEqual($response_data);
 });
 
-
 it('can create client auto responders', function () {
 
     $response_data = [
-        "data" => [
-            "hash" => "tTdsMcMlEfiGUziGVbycczaI4INGv0MF",
-            "type" => "chatbot",
-            "reference_id" => "abc-123-456",
-            "api_client_id" => 26,
-            "updated_at" => "2023-11-09T23:58:37.000000Z",
-            "created_at" => "2023-11-09T23:58:37.000000Z",
-            "id" => 1,
-            "links" => [
-                "self" => "https://biglyai.test/api/v1/clients/26/auto-responders/1",
-                "chat" => "https://biglyai.test/api/v1/clients/26/auto-responders/1/chat",
+        'data' => [
+            'hash' => 'tTdsMcMlEfiGUziGVbycczaI4INGv0MF',
+            'type' => 'chatbot',
+            'reference_id' => 'abc-123-456',
+            'api_client_id' => 26,
+            'updated_at' => '2023-11-09T23:58:37.000000Z',
+            'created_at' => '2023-11-09T23:58:37.000000Z',
+            'id' => 1,
+            'links' => [
+                'self' => 'https://biglyai.test/api/v1/clients/26/auto-responders/1',
+                'chat' => 'https://biglyai.test/api/v1/clients/26/auto-responders/1/chat',
             ],
         ],
     ];
 
     $mockClient = new MockClient([
-        CreateClientAutoResponderRequest::class => MockResponse::make($response_data)
+        CreateClientAutoResponderRequest::class => MockResponse::make($response_data),
     ]);
 
     $this->api->withMockClient($mockClient);
 
     $reference_id = 'abc-123-456';
-    $type         = AutoResponderType::CHATBOT;
+    $type = AutoResponderType::CHATBOT;
 
     $response = $this->api->clientAutoResponders(26)->create($reference_id, $type);
 
@@ -712,38 +706,37 @@ it('can create client auto responders', function () {
 
 });
 
-
 it('can show client auto responder', function () {
 
     $response_data = [
-        "data" => [
-            "log" => [
+        'data' => [
+            'log' => [
                 [
-                    "id" => 60,
-                    "chatable_type" => "App\Models\ApiAutoResponder",
-                    "chatable_id" => 2,
-                    "type" => "question",
-                    "content" => "Hi, how are you?",
-                    "created_at" => "2023-11-10T00:13:36.000000Z",
-                    "updated_at" => "2023-11-10T00:13:36.000000Z",
-                    "deleted_at" => null,
+                    'id' => 60,
+                    'chatable_type' => "App\Models\ApiAutoResponder",
+                    'chatable_id' => 2,
+                    'type' => 'question',
+                    'content' => 'Hi, how are you?',
+                    'created_at' => '2023-11-10T00:13:36.000000Z',
+                    'updated_at' => '2023-11-10T00:13:36.000000Z',
+                    'deleted_at' => null,
                 ],
                 [
-                    "id" => 61,
-                    "chatable_type" => "App\Models\ApiAutoResponder",
-                    "chatable_id" => 2,
-                    "type" => "answer",
-                    "content" => "I'm fine.",
-                    "created_at" => "2023-11-10T00:13:53.000000Z",
-                    "updated_at" => "2023-11-10T00:13:53.000000Z",
-                    "deleted_at" => null,
+                    'id' => 61,
+                    'chatable_type' => "App\Models\ApiAutoResponder",
+                    'chatable_id' => 2,
+                    'type' => 'answer',
+                    'content' => "I'm fine.",
+                    'created_at' => '2023-11-10T00:13:53.000000Z',
+                    'updated_at' => '2023-11-10T00:13:53.000000Z',
+                    'deleted_at' => null,
                 ],
             ],
         ],
     ];
 
     $mockClient = new MockClient([
-        ShowClientAutoResponderRequest::class => MockResponse::make($response_data)
+        ShowClientAutoResponderRequest::class => MockResponse::make($response_data),
     ]);
 
     $this->api->withMockClient($mockClient);
@@ -754,24 +747,23 @@ it('can show client auto responder', function () {
 
 });
 
-
 it('can chat with client auto responder', function () {
 
     $response_data = [
         'data' => [
             'response' => "I'm fine.",
-            'error'    => ''
-        ]
+            'error' => '',
+        ],
     ];
 
     $mockClient = new MockClient([
-        CreateClientAutoResponderChatRequest::class => MockResponse::make($response_data)
+        CreateClientAutoResponderChatRequest::class => MockResponse::make($response_data),
     ]);
 
     $this->api->withMockClient($mockClient);
 
     $question = 'Hi, how are you?';
-    $prompt =<<<EOT
+    $prompt = <<<'EOT'
     If asked how you are respond: "I'm fine."
     EOT;
 

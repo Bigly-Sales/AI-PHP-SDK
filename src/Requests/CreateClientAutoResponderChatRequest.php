@@ -2,7 +2,6 @@
 
 namespace BiglySales\BiglySalesAiSdk\Requests;
 
-use BiglySales\BiglySalesAiSdk\Enums\AutoResponderType;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
@@ -32,7 +31,7 @@ class CreateClientAutoResponderChatRequest extends Request implements HasBody
     {
         return [
             'question' => $this->question,
-            'prompt'   => $this->prompt,
+            'prompt' => $this->prompt,
         ];
     }
 }
