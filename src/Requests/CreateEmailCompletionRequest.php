@@ -15,16 +15,16 @@ class CreateEmailCompletionRequest extends Request implements HasBody
 
     /**
      * @param  string  $pre_prompt
-     *  A pre-prompt is where you can provide information that should be taken into
-     *  account when generating the email completion. Information placed here
-     *  should be about the sender, not the recipient.
+     *                              A pre-prompt is where you can provide information that should be taken into
+     *                              account when generating the email completion. Information placed here
+     *                              should be about the sender, not the recipient.
      * @param  string  $rules
-     *  Rules are extra instructions you can give to fine-tune
-     *  how the AI generates the email completion.
+     *                         Rules are extra instructions you can give to fine-tune
+     *                         how the AI generates the email completion.
      * @param  array  $payload
-     *  The payload is the information about the recipient.
+     *                          The payload is the information about the recipient.
      * @param  string  $api_key
-     *  Your BiglySales AI API Key
+     *                           Your BiglySales AI API Key
      */
     public function __construct(
         public readonly string $pre_prompt,
