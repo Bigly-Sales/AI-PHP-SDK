@@ -22,7 +22,7 @@ class BiglySalesAi extends Connector
 
     public function resolveBaseUrl(): string
     {
-        return 'https://biglyai.test/api/v1';
+        return 'https://ai.biglysales.com/api/v1';
     }
 
     public function defaultHeaders(): array
